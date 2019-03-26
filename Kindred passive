@@ -1,0 +1,18 @@
+Both Lamb and Wolf mark targets to hunt. Lamb marks an enemy champion for death (this mark activates after an 8 second delay), while Wolf periodically marks monsters in the enemy jungle. All champions can see which targets are marked.
+
+After 40 seconds of having no active jungle mark, Wolf marks an enemy jungle monster for 3 minutes.
+
+Wolf marks jungle monsters based on Kindred's current stacks:
+
+0 Marks: Rift Scuttler
+1-3 Marks: Rift Scuttler, Crimson Raptor, Gromp
+4-7 Marks: Red Brambleback, Blue Sentinel, Ancient Krug, Greater Murk Wolf
+8+ Marks: Rift Herald, Baron Nashor, Elemental Drakes, Elder Dragon
+
+If Kindred kills a marked target or assists in their death, they gain a mark. Kindred's basic attacks and Mounting Dread gain 75 range at 4 stacks, plus 25 range every 3 stacks thereafter. Stacks also amplify Kindred's basic abilities:
+
+Q - Dance of Arrows: Bonus attack speed increased by an additional 5% per stack.
+W - Wolf's Frenzy: Current health damage increased by an additional 0.5% per stack.
+E - Mounting Dread: Missing health damage increased by an additional 0.5% per stack.
+
+Targets successfully hunted cannot be targeted again for 240 seconds. Lamb can also change her target after 90 seconds if the target hasn't died in that time.
