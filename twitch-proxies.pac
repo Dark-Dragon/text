@@ -7,6 +7,7 @@ var proxyList = [
 var currentIndex = 0;
 
 function FindProxyForURL(url, host) {
+  alert("URL: " + url + "\nHost: " + host)
   if ( (shExpMatch(host, "*.twitch.tv") && !shExpMatch(url, "*/videos/*")) || shExpMatch(host, "*.wieistmeineip.de") ) {
     var proxy = proxyList[currentIndex];
     currentIndex = (currentIndex + 1) % proxyList.length;
