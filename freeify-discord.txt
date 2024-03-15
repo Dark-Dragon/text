@@ -1,3 +1,7 @@
+! Title: Freeify Discord
+! Description: Removes paid elements from in-browser-discord
+! Homepage: https://github.com/Dark-Dragon/text/
+
 ! removes nitro and shop button above friends message list
 discord.com##li.container__8759a.channel_c21703:has(div > a > div > div > div > div:has-text(Nitro))
 discord.com##li.container__8759a.channel_c21703:has(div > a > div > div > div > div:has-text(Shop))
