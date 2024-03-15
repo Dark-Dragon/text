@@ -1,5 +1,5 @@
 ! Title: Freeify Discord
-! Description: Removes paid elements from in-browser-discord
+! Description: Removes paid elements and payment options from in-browser-discord
 ! Homepage: https://github.com/Dark-Dragon/text/
 
 ! removes nitro and shop button above friends message list
