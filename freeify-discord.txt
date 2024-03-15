@@ -1,0 +1,17 @@
+! removes nitro and shop button above friends message list
+discord.com##li.container__8759a.channel_c21703:has(div > a > div > div > div > div:has-text(Nitro))
+discord.com##li.container__8759a.channel_c21703:has(div > a > div > div > div > div:has-text(Shop))
+
+! removes 'send sift' button within text input
+discord.com##button[aria-label="Send a gift"]
+
+! removes 'enable super reactions' button in reactions pop-up
+discord.com##.burstToggle__5e176
+
+! removes super reaction 'unlock with nitro'-prompt when hovering a super reaction
+discord.com##.burstReactionTooltipPrompt__069e3
+
+! removes nitro only autocomplete emotes
+discord.com##.nitroTopDividerContainer__4c8fd
+discord.com##.premiumHeader_f78f97
+discord.com##.premiumEmoji__2dbd7
