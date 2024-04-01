@@ -1,0 +1,26 @@
+{
+	"bingo": [
+		{
+			"name": "wolfblade cake bingo",
+			"description": "it was the original bingo",
+			"entries": [
+				"banana",
+				"apple",
+				"pear",
+				"cherry",
+				"coconut"
+			]
+		},
+		{
+			"name": "karstix super bingo",
+			"description": "bingo that never existed",
+			"entries": [
+				"salad",
+				"sausage",
+				"bacon",
+				"steak",
+				"pasta"
+			]
+		}
+	]
+}
