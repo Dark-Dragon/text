@@ -13,18 +13,25 @@ function generateBingoBoard() {
 	
 	console.log(wordList);
 	
-	wordList = shuffleArrayWithSeed(wordList,seed)
+	wordList = shuffleArrayWithSeed(wordList,seed);
 	
 	console.log(wordList);
 	
 	const boardSize = parseInt(document.getElementById("boardSize").value);
 	var htmlTable = '<table>';
+	var freespaces = JSON.parse(bingoData[selectedBingo.text].freespaces);
+	console.log(freespaces);
 	
 	for (let i = 0; i < boardSize; i++) {
 		htmlTable += '<tr>';
 		for (let j = 0; j < boardSize; j++) {
-			let cell = wordList.pop() || "";
-			htmlTable += '<td>'+cell+'</td>';
+			if ( freespaces.some(pair => pair[0] === i && pair[1] === j) ) {
+				htmlTable += '<td style="background-color: #B8F4B8;">FREE SPACE</td>';
+			}
+			else {
+				let cell = wordList.pop() || "";
+				htmlTable += '<td>'+cell+'</td>';
+			}
 		}
 		htmlTable += '</tr>';
 	}
@@ -43,7 +50,6 @@ function generateBingoBoard() {
     });
 }
 
-// Function to shuffle an array (Fisher-Yates algorithm)
 function shuffleArrayWithSeed(array,sd) {
 	
 	var randomSeed = new Math.seedrandom(sd);
@@ -79,10 +85,8 @@ window.onload = function () {
 			return response.json(); // Parse the JSON from the response
 		})
 		.then(data => {
-			// Here, 'data' is the JSON data you retrieved
+
 			console.log(data);
-			// Process your data here
-			
 			bingoData = data;
 			
 			for (const key in data) {
@@ -117,23 +121,3 @@ window.onload = function () {
 	}
 	
 };
-
-// Function to generate HTML for the bingo board
-function generateBoardHtml(boardSize, shuffledNumbers) {
-	
-	
-	
-	
-	
-	let boardHtml = '<table>';
-	for (let i = 0; i < boardSize; i++) {
-		boardHtml += '<tr>';
-		for (let j = 0; j < boardSize; j++) {
-			const number = shuffledNumbers[i * boardSize + j];
-			boardHtml += `<td>${number}</td>`;
-		}
-		boardHtml += '</tr>';
-	}
-	boardHtml += '</table>';
-	return boardHtml;
-}

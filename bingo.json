@@ -1,6 +1,9 @@
 {
 	"wolfblade cake bingo": {
 		"description": "it was the original bingo",
+		"x": "5",
+		"y": "5",
+		"freespaces": "[[2,2]]",
 		"entries": [
 			"Someone has 5 or more stars before bonus stars",
 			"No one but wolf wants to play anymore",
@@ -94,6 +97,7 @@
 
 	"karstix super bingo": {
 		"description": "bingo that never existed",
+		"freespaces": "[[2,2]]",
 		"entries": [
 			"salad",
 			"sausage",

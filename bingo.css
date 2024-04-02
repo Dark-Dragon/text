@@ -1,30 +1,34 @@
 /* Add the CSS styles here */
-body {
+html, body {
 	font-family: Arial, sans-serif;
-	margin: 0;
-	padding: 20px;
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
 h1 {
 	text-align: center;
 }
 
+.gradient-background {
+    background: linear-gradient(to bottom, #FFE1AC 0%, #FFFFFF 35%);
+	background-repeat: no-repeat;
+}
+
 label {
-	display: block;
-	margin-bottom: 5px;
 	display: inline;
 }
 
 input[type="number"] {
 	width: 50px;
+	border-radius: 5px;
 	display: inline;
 }
 
 select {
-	display: block;
-	margin-top: 10px;
 	width: 200px;
 	padding: 5px;
+	border-radius: 5px;
 	display: inline;
 }
 
@@ -35,8 +39,6 @@ div.row {
 }
 
 button {
-	display: block;
-	margin-top: 10px;
 	padding: 10px;
 	background-color: #007bff;
 	color: #fff;
@@ -51,7 +53,6 @@ button:hover {
 }
 
 #bingoBoard {
-	border-collapse: collapse;
 	width: 700px;
 	height: 700px;
 	max-width: 100%;
@@ -62,10 +63,10 @@ button:hover {
 }
 
 #bingoBoard table {
+	border-radius: 15px;
 	border: 5px solid #ccc;
 	width: 100%;
 	height: 100%;
-	table-layout: fixed;
 }
 
 #bingoBoard tbody {
@@ -76,7 +77,6 @@ button:hover {
 #bingoBoard tr {
 	width: 100%;
 	height: calc(100% / var(--rows));
-	overflow: hidden;
 }
 
 #bingoBoard td {
@@ -84,20 +84,28 @@ button:hover {
 	padding: 10px;
 	text-align: center;
 	cursor: pointer; 
-	width: calc(100% / var(--columns));
-	word-wrap: normal;
-    overflow-wrap: break-word;
-}
-
-/* Optional: Add some spacing between table cells */
-#bingoBoard td + td {
-	margin-left: 10px;
 }
 
 #bingoBoard td.clicked {
-	background-color: lightgreen; /* Add background color when clicked */
+	background-color: #B8F4B8; /* Add background color when clicked */
+}
+
+#bingoBoard tbody tr:first-child td:first-child {
+	border-top-left-radius: 10px;
+}
+
+#bingoBoard tbody tr:first-child td:last-child {
+	border-top-right-radius: 10px;
+}
+
+#bingoBoard tbody tr:last-child td:first-child {
+	border-bottom-left-radius: 10px;
+}
+
+#bingoBoard tbody tr:last-child td:last-child {
+	border-bottom-right-radius: 10px;
 }
 
 td:hover {
-	background-color: #FF56b3;
+	background-color: #E1FAE1;
 }
