@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bingo Board Generator</title>
-    <style>
-        /* Add your styles here */
-    </style>
+	<link rel="stylesheet" type="text/css" href="bingo.css">
 </head>
 <body>
     <h1>Bingo Board Generator</h1>
 
+	<div class="row">
+	
     <label for="boardSize">Board Size:</label>
     <input type="number" id="boardSize" min="3" max="10" value="5">
 	
@@ -18,9 +18,12 @@
 	</select>
     
     <button onclick="generateBingoBoard()">Generate Board</button>
+	
+	</div>
 
     <div id="bingoBoard"></div>
-
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
     <script src="bingo.js"></script>
 </body>
 </html>

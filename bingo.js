@@ -1,60 +1,73 @@
+var bingoData;
+
 function generateBingoBoard() {
-	// Get the board size from the input
-	const boardSize = parseInt(document.getElementById('boardSize').value);
-
-	// Generate an array of unique random numbers for the board
-	const numbers = Array.from({ length: boardSize * boardSize }, (_, index) => index + 1);
-	const shuffledNumbers = shuffleArray(numbers);
-
-	// Create the bingo board HTML
-	let boardHtml = '<table>';
+	var bingoComboBox = document.getElementById("bingoList")
+	var bingoComboBoxSelectedIndex = bingoComboBox.selectedIndex
+	var selectedBingo = bingoComboBox.options[bingoComboBoxSelectedIndex]
+	
+	console.log("selection is: " + selectedBingo.text);
+	
+	var seed = getURLSeed();
+	
+	var wordList = bingoData[selectedBingo.text].entries;
+	
+	console.log(wordList);
+	
+	wordList = shuffleArrayWithSeed(wordList,seed)
+	
+	console.log(wordList);
+	
+	const boardSize = parseInt(document.getElementById("boardSize").value);
+	var htmlTable = '<table>';
+	
 	for (let i = 0; i < boardSize; i++) {
-		boardHtml += '<tr>';
+		htmlTable += '<tr>';
 		for (let j = 0; j < boardSize; j++) {
-			const number = shuffledNumbers[i * boardSize + j];
-			boardHtml += `<td>${number}</td>`;
+			let cell = wordList.pop() || "";
+			htmlTable += '<td>'+cell+'</td>';
 		}
-		boardHtml += '</tr>';
+		htmlTable += '</tr>';
 	}
-	boardHtml += '</table>';
+	htmlTable += '</table>';
+	
+	document.getElementById('bingoBoard').innerHTML = htmlTable;
+	
+	var cells = document.querySelectorAll('#bingoBoard td');
 
-	// Display the bingo board
-	document.getElementById('bingoBoard').innerHTML = boardHtml;
-
-	// Update URL parameters with the state of the board
-	const boardState = shuffledNumbers.join(',');
-	const newUrl = `${window.location.origin}${window.location.pathname}?boardSize=${boardSize}&boardState=${boardState}`;
-	window.history.replaceState({ path: newUrl }, '', newUrl);
+    // Add click event listener to each <td> element
+    cells.forEach(function(cell) {
+        cell.addEventListener('click', function() {
+            // Toggle the 'clicked' class to change background color
+            cell.classList.toggle('clicked');
+        });
+    });
 }
 
 // Function to shuffle an array (Fisher-Yates algorithm)
-function shuffleArray(array) {
-	for (let i = array.length - 1; i > 0; i--) {
-		const j = Math.floor(Math.random() * (i + 1));
-		[array[i], array[j]] = [array[j], array[i]];
+function shuffleArrayWithSeed(array,sd) {
+	
+	var randomSeed = new Math.seedrandom(sd);
+	
+	let copy = [...array];
+	let newArray = [];
+	
+	while (copy.length > 0) {
+		var rand = randomSeed();
+		var index = Math.ceil(copy.length * rand)-1;
+		newArray.push(copy[index]);
+		copy.splice(index,1);
 	}
-	return array;
+	return newArray;
 }
 
-// Function to parse the URL parameters
-function getParams() {
-	const params = new URLSearchParams(window.location.search);
-	return {
-		boardSize: parseInt(params.get('boardSize')) || 5,
-		boardState: params.get('boardState'),
-	};
+function getURLSeed() {
+	const seed = parseInt(new URLSearchParams(window.location.search).get('seed'));
+	return seed;
 }
 
 // Initialize the board based on URL parameters on page load
 window.onload = function () {
-	const { boardSize, boardState } = getParams();
-	document.getElementById('boardSize').value = boardSize;
-	if (boardState) {
-		const shuffledNumbers = boardState.split(',').map(Number);
-		const boardHtml = generateBoardHtml(boardSize, shuffledNumbers);
-		document.getElementById('bingoBoard').innerHTML = boardHtml;
-	}
-	
+
 	var combobox = document.getElementById("bingoList");
 	
 	fetch('bingo.json')
@@ -70,27 +83,48 @@ window.onload = function () {
 			console.log(data);
 			// Process your data here
 			
-			data.bingo.forEach(bingo => {
-				console.log("Name: " + bingo.name + ", Description: " + bingo.description);
+			bingoData = data;
+			
+			for (const key in data) {
+				console.log("Name: " + key + ", Description: " + data[key].description);
+				
 				var newOption = document.createElement("option");
 			  
-				newOption.value = bingo.description;
-				newOption.text = bingo.name;
+				newOption.value = data[key];
+				newOption.text = key;
 				
 				combobox.appendChild(newOption);
-			});
+			}
 			
 		})
 		.catch(error => {
 			// Handle any errors
 			console.error('There was a problem with the fetch operation:', error);
 		});
+	
+	var seed = getURLSeed()
+	
+	console.log("Existing seed is: " + seed)
+
+	if (!seed) {
 		
+		let newSeed = Math.random().toString().slice(2)
+		
+		console.log("Generated new seed: " + newSeed)
+
+		const newUrl = `${window.location.origin}${window.location.pathname}?seed=${newSeed}`;
+		window.history.replaceState({ path: newUrl }, '', newUrl);
+	}
 	
 };
 
 // Function to generate HTML for the bingo board
 function generateBoardHtml(boardSize, shuffledNumbers) {
+	
+	
+	
+	
+	
 	let boardHtml = '<table>';
 	for (let i = 0; i < boardSize; i++) {
 		boardHtml += '<tr>';

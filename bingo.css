@@ -1,0 +1,103 @@
+/* Add the CSS styles here */
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 20px;
+}
+
+h1 {
+	text-align: center;
+}
+
+label {
+	display: block;
+	margin-bottom: 5px;
+	display: inline;
+}
+
+input[type="number"] {
+	width: 50px;
+	display: inline;
+}
+
+select {
+	display: block;
+	margin-top: 10px;
+	width: 200px;
+	padding: 5px;
+	display: inline;
+}
+
+div.row {
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+button {
+	display: block;
+	margin-top: 10px;
+	padding: 10px;
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	display: inline;
+}
+
+button:hover {
+	background-color: #0056b3;
+}
+
+#bingoBoard {
+	border-collapse: collapse;
+	width: 700px;
+	height: 700px;
+	max-width: 100%;
+	max-height: 100%;
+	margin: 0 auto;
+	margin-top: 20px;
+	font-size: 14px;
+}
+
+#bingoBoard table {
+	border: 5px solid #ccc;
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+}
+
+#bingoBoard tbody {
+	width: 100%;
+	height: 100%;
+}
+
+#bingoBoard tr {
+	width: 100%;
+	height: calc(100% / var(--rows));
+	overflow: hidden;
+}
+
+#bingoBoard td {
+	border: 1px solid #ccc;
+	padding: 10px;
+	text-align: center;
+	cursor: pointer; 
+	width: calc(100% / var(--columns));
+	word-wrap: normal;
+    overflow-wrap: break-word;
+}
+
+/* Optional: Add some spacing between table cells */
+#bingoBoard td + td {
+	margin-left: 10px;
+}
+
+#bingoBoard td.clicked {
+	background-color: lightgreen; /* Add background color when clicked */
+}
+
+td:hover {
+	background-color: #FF56b3;
+}
